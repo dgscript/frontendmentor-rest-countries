@@ -72,10 +72,15 @@ export default function Home() {
 
   useEffect(() => {
     if (countries !== null) {
-      setCacheCountries(
-        countries.filter((country) => country.region === filter)
-      );
-      setPage(16);
+      if (filter === "All") {
+        setCacheCountries(countries);
+        setPage(16);
+      } else {
+        setCacheCountries(
+          countries.filter((country) => country.region === filter)
+        );
+        setPage(16);
+      }
     }
   }, [filter]);
 
@@ -112,7 +117,7 @@ export default function Home() {
         filter={filter}
         search={search}
       />
-      <div className="flex flex-wrap gap-20 justify-center max-w-[1440px] m-auto pb-10 relative">
+      <div className="flex flex-wrap gap-18 justify-center max-w-[1440px] m-auto pb-10 relative">
         {displayCountries === null && <Loading />}
         {displayCountries !== null &&
           displayCountries.map((country, index) => (
