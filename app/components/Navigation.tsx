@@ -28,10 +28,10 @@ export default function SearchBar({
           theme === "dark"
             ? "bg-blue-900 *:text-white"
             : "bg-white *:text-black"
-        } rounded-md flex align-center py-1 px-7 shadow-lg w-[40%] max-md:w-full`}
+        } has-[input:focus]:outline-1 has-[input:focus]:outline-yellow-400 rounded-md flex align-center py-1 px-7 shadow-lg w-[40%] max-md:w-full`}
       >
         <button
-          className={`p-3 cursor-pointer`}
+          className={`p-3 cursor-pointer `}
           onClick={() => {
             search();
           }}
@@ -42,7 +42,7 @@ export default function SearchBar({
             viewBox="0 -960 960 960"
             width="24px"
             fill="#FFFFFF"
-            className={`${theme === "light" && "fill-black"}`}
+            className={`${theme === "light" && "fill-black"} transition-colors`}
           >
             <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" />
           </svg>
@@ -67,13 +67,18 @@ export default function SearchBar({
       <div
         className={`${
           theme === "dark" ? "bg-blue-900 text-white" : "bg-white text-black"
-        } rounded-md flex items-center pl-6 pr-4 relative w-60 justify-between hover:cursor-pointer select-none shadow-lg py-4`}
+        } rounded-md flex items-center pl-6 pr-4 relative w-60 justify-between hover:cursor-pointer select-none shadow-lg py-4 focus:outline-1 outline-yellow-400`}
         tabIndex={0}
         onClick={() => {
           setIsFilterDropdownActive(!isFilterDropdownActive);
         }}
         onBlur={() => {
           setIsFilterDropdownActive(false);
+        }}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            setIsFilterDropdownActive(!isFilterDropdownActive);
+          }
         }}
       >
         <p>{filter === "" ? "Filter by Region" : filter}</p>

@@ -25,11 +25,14 @@ export default function Card({
   const theme = useSelector((state: RootState) => state.theme.value);
 
   return (
-    <Link href={`/country/${code}`}>
+    <Link
+      href={`/country/${code}`}
+      className="focus:*:scale-101 focus:outline-0"
+    >
       <div
         className={`w-75 rounded-sm overflow-hidden shadow-lg ${
           theme === "dark" ? "bg-blue-900" : "bg-white"
-        }`}
+        } hover:scale-101 transition-transform`}
         onClick={() => {
           setDisplayCountryName(name);
         }}
